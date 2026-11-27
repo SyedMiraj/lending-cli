@@ -4,3 +4,4 @@ config/merchants.json
 *.iml
 .vscode/
 .metals/
+dist/

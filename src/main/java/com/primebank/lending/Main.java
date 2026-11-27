@@ -23,15 +23,18 @@ public final class Main {
         // UTF-8 output so Bangla text in responses prints cleanly.
         System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out), true, StandardCharsets.UTF_8));
         System.setErr(new PrintStream(new FileOutputStream(FileDescriptor.err), true, StandardCharsets.UTF_8));
+        useUtf8Console();
 
         Path path = Config.resolvePath();
         Config config;
         try {
             config = Config.load(path);
         } catch (IOException e) {
-            System.err.println("[-] Could not load config " + path.toAbsolutePath() + ": " + e.getMessage());
-            System.err.println("    Copy config/merchants.example.json to config/merchants.json and fill it in,");
-            System.err.println("    or pass -Dlending.config=<file> / set LENDING_CONFIG.");
+            String reason = e instanceof java.nio.file.NoSuchFileException ? "file not found" : e.getMessage();
+            System.err.println("[-] Could not load config " + path.toAbsolutePath() + ": " + reason);
+            System.err.println("    Put merchants.json in a \"config\" folder next to the program,");
+            System.err.println("    or set LENDING_CONFIG to the file's full path.");
+            pauseBeforeClose();
             System.exit(1);
             return;
         }
@@ -42,6 +45,45 @@ public final class Main {
         } catch (Prompt.EndOfInput e) {
             System.out.println();
             System.out.println("Exiting...");
+        } catch (RuntimeException e) {
+            System.err.println("[-] Unexpected error: " + e);
+            pauseBeforeClose();
+            System.exit(1);
+        }
+    }
+
+    private static boolean isWindows() {
+        return System.getProperty("os.name", "").toLowerCase().startsWith("windows");
+    }
+
+    /**
+     * On Windows, switches the console to UTF-8 (chcp 65001) so Bangla text prints correctly
+     * without the user running chcp first. Does nothing elsewhere or without a console.
+     */
+    private static void useUtf8Console() {
+        if (!isWindows() || System.console() == null) {
+            return;
+        }
+        try {
+            new ProcessBuilder("cmd", "/c", "chcp 65001 >nul").inheritIO().start().waitFor();
+        } catch (IOException e) {
+            // Leave the code page as it is; only non-ASCII text is affected.
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    /** Keeps a double-clicked console window open so the user can read the error. */
+    private static void pauseBeforeClose() {
+        if (System.console() == null) {
+            return;
+        }
+        System.err.print("Press Enter to close...");
+        System.err.flush();
+        try {
+            System.in.read();
+        } catch (IOException ignored) {
+            // Closing anyway.
         }
     }
 

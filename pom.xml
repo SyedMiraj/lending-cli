@@ -96,6 +96,8 @@
               <mainClass>${main.class}</mainClass>
               <buildArgs>
                 <buildArg>--no-fallback</buildArg>
+                <!-- Run on any x86-64 CPU, not just the build machine's generation. -->
+                <buildArg>-march=compatibility</buildArg>
                 <buildArg>--enable-http</buildArg>
                 <buildArg>--enable-https</buildArg>
               </buildArgs>

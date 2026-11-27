@@ -19,6 +19,7 @@ src/main/java/com/primebank/lending/
   ApiClient.java   token fetch, headers, POST with one retry on 401, response printing
   Config.java      loads merchants.json
   Prompt.java      console input
+build-windows.cmd                    builds the client zip (dist\PrimeLendingCLI.zip)
 .gitattributes                       keeps mvnw on LF line endings so it runs on Linux/macOS
 ```
 
@@ -49,6 +50,8 @@ The CLI looks for the config file in this order:
 1. `-Dlending.config=/path/to/merchants.json` (JVM only)
 2. The `LENDING_CONFIG` environment variable (works for the native binary too)
 3. `config/merchants.json`, relative to the current directory
+4. `config/merchants.json` next to the executable (or jar), so a double-clicked exe or a shortcut
+   finds its config wherever it starts
 
 Useful settings:
 
@@ -76,17 +79,36 @@ Use a terminal where `JAVA_HOME` points to GraalVM. On Windows, use the
 The output is `target/lending-cli` (Linux/macOS) or `target\lending-cli.exe` (Windows).
 GraalVM doesn't cross-compile, so build on each OS/architecture you need to support.
 
-To distribute the CLI, ship the executable together with a `config/merchants.json` for that
-environment:
+## Package for a client (Windows)
+
+The client needs nothing installed: no Java, no Python, no runtime. From the
+**x64 Native Tools Command Prompt for VS** (with `JAVA_HOME` set to GraalVM), run:
+
+```bat
+build-windows.cmd
+```
+
+This builds the native exe and produces `dist\PrimeLendingCLI.zip`:
 
 ```
-lending-cli(.exe)
-config/merchants.json
+PrimeLendingCLI\
+  lending-cli.exe
+  vcruntime140.dll          Visual C++ runtime, shipped next to the exe because a clean Windows may lack it
+  vcruntime140_1.dll
+  config\merchants.json     copied from your config\merchants.json (contains credentials)
 ```
 
-Run it from that folder, or set `LENDING_CONFIG` to point at the config file.
+`build-windows.cmd --package-only` repackages the existing `target\lending-cli.exe` without
+rebuilding it.
 
-On Windows, if Bangla text in responses looks garbled, switch the console to UTF-8 first: `chcp 65001`.
+The client unzips it and double-clicks `lending-cli.exe`. The exe switches the console to UTF-8
+for Bangla text by itself. If something goes wrong at startup (for example, a missing config), the
+window stays open until they press Enter. The exe is built with `-march=compatibility`, so it runs
+on older x86-64 CPUs too.
+
+The zip contains credentials, so send it through a secure channel. For other OSes, build the native
+image on that OS (`./mvnw -Pnative package`) and ship the binary with `config/merchants.json` next
+to it in the same way.
 
 ## Menu
 

@@ -34,16 +34,50 @@ final class Config {
         }
     }
 
-    /** Path order: -Dlending.config, then LENDING_CONFIG env var, then config/merchants.json. */
+    /**
+     * Path order: -Dlending.config, then LENDING_CONFIG env var, then config/merchants.json in the
+     * current directory, then config/merchants.json next to the executable (or jar). The last one
+     * makes a double-clicked executable or a desktop shortcut find its config wherever it starts.
+     */
     static Path resolvePath() {
         String path = System.getProperty("lending.config");
         if (path == null || path.isBlank()) {
             path = System.getenv("LENDING_CONFIG");
         }
-        if (path == null || path.isBlank()) {
-            path = DEFAULT_PATH;
+        if (path != null && !path.isBlank()) {
+            return Path.of(path);
         }
-        return Path.of(path);
+        Path inWorkingDir = Path.of(DEFAULT_PATH);
+        if (Files.isRegularFile(inWorkingDir)) {
+            return inWorkingDir;
+        }
+        Path appDir = appDir();
+        if (appDir != null) {
+            Path besideApp = appDir.resolve(DEFAULT_PATH);
+            if (Files.isRegularFile(besideApp)) {
+                return besideApp;
+            }
+        }
+        return inWorkingDir;
+    }
+
+    /** Folder holding the native executable or the jar, or null if it can't be determined. */
+    static Path appDir() {
+        try {
+            if (System.getProperty("org.graalvm.nativeimage.imagecode") != null) {
+                return ProcessHandle.current().info().command()
+                        .map(cmd -> Path.of(cmd).toAbsolutePath().getParent())
+                        .orElse(null);
+            }
+            var source = Config.class.getProtectionDomain().getCodeSource();
+            if (source == null) {
+                return null;
+            }
+            Path location = Path.of(source.getLocation().toURI()).toAbsolutePath();
+            return Files.isDirectory(location) ? location : location.getParent();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     static Config load(Path path) throws IOException {
