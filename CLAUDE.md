@@ -16,7 +16,7 @@ java -jar target/lending-cli-1.0.0-SNAPSHOT.jar
 ./mvnw test                                  # all tests (JUnit 5)
 ./mvnw test -Dtest=OperationsTest#requestIdHasPrefixAndFixedLength   # single test
 ./mvnw -Pnative -DskipTests package          # native image -> target/lending-cli(.exe); needs GraalVM as JAVA_HOME
-build-windows.cmd                            # Windows: native exe + config -> dist\PrimeLendingCLI.zip for clients
+build-windows.cmd [--package-only]           # Windows: native exe (as lending.exe) + VC++ DLLs + config + packaging/windows/* -> dist\PrimeLendingCLI.zip
 ```
 
 The native build on Windows must run from the "x64 Native Tools Command Prompt for VS". GraalVM does not cross-compile.

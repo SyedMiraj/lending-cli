@@ -20,6 +20,7 @@ src/main/java/com/primebank/lending/
   Config.java      loads merchants.json
   Prompt.java      console input
 build-windows.cmd                    builds the client zip (dist\PrimeLendingCLI.zip)
+packaging/windows/                   install.cmd / uninstall.cmd / setup.ps1 / client README.txt shipped in the zip
 .gitattributes                       keeps mvnw on LF line endings so it runs on Linux/macOS
 ```
 
@@ -92,7 +93,11 @@ This builds the native exe and produces `dist\PrimeLendingCLI.zip`:
 
 ```
 PrimeLendingCLI\
-  lending-cli.exe
+  lending.exe               the CLI (target\lending-cli.exe, renamed so the command is "lending")
+  install.cmd               adds the CLI to the user's PATH (no admin needed)
+  uninstall.cmd             removes it again
+  setup.ps1                 used by install.cmd / uninstall.cmd
+  README.txt                client user guide (packaging/windows/README.txt)
   vcruntime140.dll          Visual C++ runtime, shipped next to the exe because a clean Windows may lack it
   vcruntime140_1.dll
   config\merchants.json     copied from your config\merchants.json (contains credentials)
@@ -101,7 +106,15 @@ PrimeLendingCLI\
 `build-windows.cmd --package-only` repackages the existing `target\lending-cli.exe` without
 rebuilding it.
 
-The client unzips it and double-clicks `lending-cli.exe`. The exe switches the console to UTF-8
+The client unzips it and either:
+
+- double-clicks `lending.exe` to run it once, or
+- double-clicks `install.cmd` once, then types `lending` in any new Command Prompt or PowerShell
+  window. `install.cmd` copies the folder to `%LOCALAPPDATA%\Programs\PrimeLendingCLI` and adds
+  that folder to the user `PATH`. To update, run `install.cmd` from the new zip. To remove, run
+  `uninstall.cmd` from that folder.
+
+The exe switches the console to UTF-8
 for Bangla text by itself. If something goes wrong at startup (for example, a missing config), the
 window stays open until they press Enter. The exe is built with `-march=compatibility`, so it runs
 on older x86-64 CPUs too.
