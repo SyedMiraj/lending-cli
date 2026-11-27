@@ -45,7 +45,7 @@ final class ApiClient {
     }
 
     private String fetchToken() {
-        System.out.println("[*] Fetching auth token for " + merchant.name + "...");
+//        System.out.println("[*] Fetching auth token for " + merchant.name + "...");
         Map<String, String> form = new LinkedHashMap<>();
         form.put("grant_type", merchant.auth("grantType"));
         form.put("client_id", merchant.auth("clientId"));
@@ -73,7 +73,7 @@ final class ApiClient {
                 System.out.println("[-] Token response 200, but could not find token field in body: " + resp.body());
                 return null;
             }
-            System.out.println("[+] Token fetched successfully.");
+//            System.out.println("[+] Token fetched successfully.");
             return found;
         } catch (IOException e) {
             System.out.println(LAN_INTERNET_ERROR_MSG);
