@@ -1,0 +1,353 @@
+{
+  "baseUrl": "https://uat-now-sg.primenow.ai/inbound/npi",
+  "showRequestPayload": false,
+  "merchants": [
+    {
+      "name": "Hishabee",
+      "key": "hishabee",
+      "auth": {
+        "enabled": true,
+        "grantType": "password",
+        "clientId": "hishabee-uat-client",
+        "username": "hishabee-uat",
+        "password": "CHANGE_ME",
+        "clientSecret": "CHANGE_ME",
+        "orgCode": "hishabee",
+        "clientAuth": "CHANGE_ME",
+        "sendBearer": true
+      },
+      "defaults": {
+        "requesterId": "hishabee",
+        "clientToken": "CHANGE_ME",
+        "serviceCode": "mrcnt1001",
+        "questionServiceCode": "mrcnt1002",
+        "answerServiceCode": "mrcnt1003",
+        "eligibilityServiceCode": "mrcnt1004",
+        "invoiceServiceCode": "mrcnt1005",
+        "disbursementInfoServiceCode": "mrcnt1006",
+        "loanDetailsServiceCode": "mrcnt1007",
+        "settlementServiceCode": "mrcnt1008",
+        "clientChannel": "app",
+        "clientCode": "hishabee",
+        "merchantCode": "hishabee",
+        "bindingClientCode": "mrcnt",
+        "accountNumber": "CHANGE_ME",
+        "answerResponseId": "res.20260922.109",
+        "invoiceNumber": "CHANGE_ME",
+        "loanId": "CHANGE_ME",
+        "settlementAmount": 5201.99,
+        "totalAmount": 40000,
+        "description": "Food Items",
+        "quantity": 10,
+        "mobileNo": "CHANGE_ME",
+        "nid": "CHANGE_ME",
+        "loanSegment": "msme",
+        "encKey": "string",
+        "requestIdPrefix": "mrcn"
+      },
+      "answerCategories": [
+        {
+          "category": "personal",
+          "questions": [
+            {
+              "id": 1,
+              "question": "Age of the Entreprenuer",
+              "answer": "55"
+            },
+            {
+              "id": 2,
+              "question": "Education [Highest Education Attainment]",
+              "answer": "Below Class 10"
+            },
+            {
+              "id": 3,
+              "question": "Gender",
+              "answer": "Male"
+            },
+            {
+              "id": 4,
+              "question": "Years of Business Experience",
+              "answer": "11"
+            },
+            {
+              "id": 5,
+              "question": "Is Applicants Present and Permanent Address are Same",
+              "answer": "Yes"
+            },
+            {
+              "id": 6,
+              "question": "Marital Status",
+              "answer": "Married"
+            },
+            {
+              "id": 7,
+              "question": "Does Family live with the Applicant",
+              "answer": "No"
+            },
+            {
+              "id": 8,
+              "question": "Ownership of Residence",
+              "answer": "Tes"
+            },
+            {
+              "id": 9,
+              "question": "No of Dependants in Family",
+              "answer": "2"
+            },
+            {
+              "id": 10,
+              "question": "Owners NID",
+              "answer": "Verified"
+            },
+            {
+              "id": 11,
+              "question": "Location of shop",
+              "answer": "Residential Area"
+            }
+          ]
+        },
+        {
+          "category": "Business",
+          "questions": [
+            {
+              "id": 17,
+              "question": "Age of the Business",
+              "answer": "7"
+            },
+            {
+              "id": 18,
+              "question": "Years at Present Address",
+              "answer": "4"
+            },
+            {
+              "id": 19,
+              "question": "Ownership of Business Premises",
+              "answer": "Family Owned"
+            },
+            {
+              "id": 20,
+              "question": "Is Valid Rental Deed Available ? (if Rented)",
+              "answer": "No"
+            },
+            {
+              "id": 21,
+              "question": "Is Owners Business Union and Permanent Residence Same Union",
+              "answer": "No"
+            },
+            {
+              "id": 22,
+              "question": "Hishabee Scoring",
+              "answer": "3"
+            },
+            {
+              "id": 23,
+              "question": "In Hishabee Relationship",
+              "answer": "10"
+            },
+            {
+              "id": 24,
+              "question": "Has Visi Cooler",
+              "answer": "Yes"
+            },
+            {
+              "id": 25,
+              "question": "Has Deep Freezer",
+              "answer": "Yes"
+            },
+            {
+              "id": 26,
+              "question": "Is Storeroom Available",
+              "answer": "Yes"
+            },
+            {
+              "id": 27,
+              "question": "Does the Business have Corporate Signboard",
+              "answer": "Yes"
+            },
+            {
+              "id": 28,
+              "question": "Business Type",
+              "answer": "Variety store"
+            }
+          ]
+        },
+        {
+          "category": "Financial",
+          "questions": [
+            {
+              "id": 32,
+              "question": "Total Sale Revenue Daily",
+              "answer": "15000"
+            },
+            {
+              "id": 33,
+              "question": "Daily Expense (Business)",
+              "answer": "1000"
+            },
+            {
+              "id": 34,
+              "question": "Gross Income",
+              "answer": "14000"
+            },
+            {
+              "id": 35,
+              "question": "Equity / Investment in the Business",
+              "answer": "300000"
+            },
+            {
+              "id": 36,
+              "question": "Average Receivables as of day end",
+              "answer": "1000"
+            },
+            {
+              "id": 37,
+              "question": "Average Payables as of day end",
+              "answer": "1000"
+            },
+            {
+              "id": 38,
+              "question": "Average Monthly purchase from Hishabee",
+              "answer": "10000"
+            },
+            {
+              "id": 39,
+              "question": "Average monthly payment to Hishabee",
+              "answer": "10000"
+            },
+            {
+              "id": 40,
+              "question": "Average Pay Back Period to Hishabee",
+              "answer": "6"
+            },
+            {
+              "id": 41,
+              "question": "Average Monthly Credit Sales Recorded in Hishabee",
+              "answer": "15000"
+            },
+            {
+              "id": 42,
+              "question": "Average Monthly Credit Collections Recorded in Hishabee",
+              "answer": "12000"
+            },
+            {
+              "id": 43,
+              "question": "Loan Repayment Behaviour",
+              "answer": "No delays, always within limits"
+            }
+          ]
+        },
+        {
+          "category": "Reference",
+          "questions": [
+            {
+              "id": 47,
+              "question": "Does applicant pay suppliers on time? (Supplier Rating)",
+              "answer": "Usually"
+            },
+            {
+              "id": 48,
+              "question": "Does applicant pay employee salary on time? (Employee Rating)",
+              "answer": "Always"
+            },
+            {
+              "id": 49,
+              "question": "Average nano loan repayment history of last 5 deals",
+              "answer": "On expiry"
+            },
+            {
+              "id": 50,
+              "question": "Number of Customers Receiving SMS Reminders via Hishabee",
+              "answer": "25"
+            },
+            {
+              "id": 51,
+              "question": "Peer Merchant Reference Check (3 Reviews)",
+              "answer": "Good"
+            }
+          ]
+        }
+      ],
+      "supportedLoanTypes": [
+        "retail",
+        "sme"
+      ]
+    },
+    {
+      "name": "Wegro",
+      "key": "wegro",
+      "auth": {
+        "enabled": true,
+        "grantType": "password",
+        "clientId": "wegro-uat-client",
+        "username": "wegro-uat",
+        "password": "CHANGE_ME",
+        "clientSecret": "CHANGE_ME",
+        "orgCode": "wegro",
+        "clientAuth": "CHANGE_ME",
+        "sendBearer": false
+      },
+      "defaults": {
+        "requesterId": "wegro",
+        "clientToken": "CHANGE_ME",
+        "serviceCode": "mrcnt1001",
+        "questionServiceCode": "mrcnt1002",
+        "answerServiceCode": "mrcnt1003",
+        "eligibilityServiceCode": "mrcnt1004",
+        "invoiceServiceCode": "mrcnt1005",
+        "disbursementInfoServiceCode": "mrcnt1006",
+        "loanDetailsServiceCode": "mrcnt1007",
+        "settlementServiceCode": "mrcnt1008",
+        "clientChannel": "app",
+        "merchantCode": "wegro",
+        "accountNumber": "CHANGE_ME",
+        "answerResponseId": "res.20260922.109",
+        "invoiceNumber": "CHANGE_ME",
+        "loanId": "CHANGE_ME",
+        "settlementAmount": 5201.99,
+        "totalAmount": 40000,
+        "description": "Food Items",
+        "quantity": 10,
+        "mobileNo": "CHANGE_ME",
+        "nid": "CHANGE_ME",
+        "loanSegment": "msme",
+        "encKey": "string",
+        "requestIdPrefix": "wgr"
+      },
+      "answerCategories": [
+        {
+          "category": "Business",
+          "questions": [
+            {
+              "id": 1,
+              "question": "Has the customer provided a valid Farmer Identification Document?",
+              "answer": "Yes"
+            },
+            {
+              "id": 2,
+              "question": "Is the customer enlisted in Primark?",
+              "answer": "Yes"
+            },
+            {
+              "id": 3,
+              "question": "What crop are you cultivating?",
+              "answer": "Cotton"
+            },
+            {
+              "id": 4,
+              "question": "What is the size of the farming area (in acres)?",
+              "answer": "1.5"
+            },
+            {
+              "id": 5,
+              "question": "What is the maximum limit amount provided by WeGro?",
+              "answer": "50000"
+            }
+          ]
+        }
+      ],
+      "supportedLoanTypes": [
+        "retail"
+      ]
+    }
+  ]
+}
