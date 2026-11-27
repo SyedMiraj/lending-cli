@@ -108,8 +108,8 @@ rebuilding it.
 
 The client unzips it and either:
 
-- double-clicks `lending.exe` to run it once, or
-- double-clicks `install.cmd` once, then types `lending` in any new Command Prompt or PowerShell
+- double-clicks `now-lending.exe` to run it once, or
+- double-clicks `install.cmd` once, then types `now-lending` in any new Command Prompt or PowerShell
   window. `install.cmd` copies the folder to `%LOCALAPPDATA%\Programs\PrimeLendingCLI` and adds
   that folder to the user `PATH`. To update, run `install.cmd` from the new zip. To remove, run
   `uninstall.cmd` from that folder.

@@ -27,9 +27,11 @@ if ($Action -eq 'install') {
         New-Item -ItemType Directory -Force -Path $dest | Out-Null
         Copy-Item -Path (Join-Path $src '*') -Destination $dest -Recurse -Force
     }
+    # Older packages shipped the command as lending.exe; drop it so only "now-lending" remains.
+    Remove-Item -Force -ErrorAction SilentlyContinue (Join-Path $dest 'lending.exe')
     Set-UserPath (($others + $dest) -join ';')
     Write-Host "[+] Installed to $dest"
-    Write-Host '[+] Open a NEW terminal (Command Prompt or PowerShell) and type: lending'
+    Write-Host '[+] Open a NEW terminal (Command Prompt or PowerShell) and type: now-lending'
 } else {
     Set-UserPath ($others -join ';')
     if (Test-Path $dest) {

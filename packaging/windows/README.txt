@@ -18,8 +18,8 @@ WHAT YOU NEED
 
 WHAT'S IN THIS FOLDER
 ---------------------
-  lending.exe            The program
-  install.cmd            Sets up the "lending" command (run once)
+  now-lending.exe        The program
+  install.cmd            Sets up the "now-lending" command (run once)
   uninstall.cmd          Removes the program
   setup.ps1              Used by install.cmd and uninstall.cmd
   vcruntime140.dll       Files the program needs; leave them in this folder
@@ -46,12 +46,12 @@ After installing, you can delete the zip and the extracted folder.
 ------
   1. Open a NEW Command Prompt or PowerShell window.
      (Press the Windows key, type "cmd", then press Enter.)
-  2. Type:   lending
+  2. Type:   now-lending
   3. Press Enter.
 
 You can run it from any folder.
 
-You can also run it without installing: double-click lending.exe in the
+You can also run it without installing: double-click now-lending.exe in the
 extracted folder.
 
 
@@ -95,12 +95,12 @@ version, including the settings in config\merchants.json.
      %LOCALAPPDATA%\Programs\PrimeLendingCLI
   3. Double-click uninstall.cmd.
 
-This removes the program and the "lending" command.
+This removes the program and the "now-lending" command.
 
 
 TROUBLESHOOTING
 ---------------
-"lending is not recognized as an internal or external command"
+"now-lending is not recognized as an internal or external command"
     Open a NEW terminal window after installing. Windows that were already
     open don't pick up the new command. If it still fails, run install.cmd
     again.
@@ -111,8 +111,8 @@ TROUBLESHOOTING
 
 install.cmd shows an error, or closes straight away
     Your PC may block PowerShell scripts. You can still use the tool by
-    double-clicking lending.exe in the extracted folder. Ask your IT team if
-    you need the "lending" command.
+    double-clicking now-lending.exe in the extracted folder. Ask your IT team if
+    you need the "now-lending" command.
 
 "Connection failed. Make sure LAN is disconnected"
     Disconnect from the office LAN (cable or LAN Wi-Fi), connect to the
@@ -120,7 +120,7 @@ install.cmd shows an error, or closes straight away
 
 "Could not load config ..."
     The file config\merchants.json is missing. It must be inside a folder
-    named "config" next to lending.exe. Extract the zip again, or ask us for
+    named "config" next to now-lending.exe. Extract the zip again, or ask us for
     a new package.
 
 "Token request failed (HTTP 401)" or other login errors

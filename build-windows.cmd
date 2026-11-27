@@ -21,8 +21,8 @@ if /i not "%~1"=="--package-only" (
 set "OUT=dist\PrimeLendingCLI"
 if exist dist rmdir /s /q dist
 mkdir "%OUT%\config"
-rem Shipped as lending.exe so clients can type "lending" once it is on PATH (see install.cmd).
-copy /y target\lending-cli.exe "%OUT%\lending.exe" >nul || exit /b 1
+rem Shipped as now-lending.exe so clients can type "now-lending" once it is on PATH (see install.cmd).
+copy /y target\lending-cli.exe "%OUT%\now-lending.exe" >nul || exit /b 1
 copy /y packaging\windows\install.cmd "%OUT%\" >nul || exit /b 1
 copy /y packaging\windows\uninstall.cmd "%OUT%\" >nul || exit /b 1
 copy /y packaging\windows\setup.ps1 "%OUT%\" >nul || exit /b 1
@@ -48,4 +48,4 @@ if exist config\merchants.json (
 
 powershell -NoProfile -Command "Compress-Archive -Path '%OUT%' -DestinationPath 'dist\PrimeLendingCLI.zip' -Force" || exit /b 1
 echo [+] Done: dist\PrimeLendingCLI.zip
-echo     Client: unzip, double-click install.cmd once, then type "lending" in a new terminal.
+echo     Client: unzip, double-click install.cmd once, then type "now-lending" in a new terminal.
