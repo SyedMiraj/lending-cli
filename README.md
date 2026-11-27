@@ -19,8 +19,11 @@ src/main/java/com/primebank/lending/
   ApiClient.java   token fetch, headers, POST with one retry on 401, response printing
   Config.java      loads merchants.json
   Prompt.java      console input
-merchant_cli.py                      Original Python CLI (behavioral reference)
+.gitattributes                       keeps mvnw on LF line endings so it runs on Linux/macOS
 ```
+
+`merchant_cli.py`, the original Python CLI, is kept locally as the behavioral reference. It is not
+committed because it contains credentials (see [Secrets](#secrets)).
 
 ## Requirements
 
@@ -105,11 +108,12 @@ amount and loan ID.
 ## Secrets
 
 - `config/merchants.json` is git-ignored. Never commit it or build it into the binary.
-- `merchant_cli.py` still contains the UAT credentials in plain text. Treat them as exposed and
-  arrange rotation. Remove the Python file, or strip its secrets, before this repository is shared.
+- `merchant_cli.py` contains the UAT credentials in plain text, so it is not committed. Strip its
+  secrets before you ever `git add` it. The credentials have already been shared in plain text, so
+  treat them as exposed and arrange rotation.
 
 ## Migration rule
 
-`merchant_cli.py` is the behavioral reference. Endpoint paths, payload field names, headers, the
-token retry, request ID format and defaults in the Java code mirror it. Check against it when
-changing an operation.
+`merchant_cli.py` (local only, not in the repository) is the behavioral reference. Endpoint paths,
+payload field names, headers, the token retry, request ID format and defaults in the Java code
+mirror it. Check against it when changing an operation.
